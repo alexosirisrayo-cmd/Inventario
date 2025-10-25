@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Material</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Edit Material</h1>
+
+    <form method="post">
+        <input type="text" name="description" placeholder="Description" value="{{ item.description }}" required>
+        <input type="number" name="quantity" placeholder="Quantity" value="{{ item.quantity }}" required>
+        <input type="text" name="unit" placeholder="Unit" value="{{ item.unit }}" required>
+        <input type="number" name="unit_price" placeholder="Unit Price" step="0.01" value="{{ item.unit_price }}" required>
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>

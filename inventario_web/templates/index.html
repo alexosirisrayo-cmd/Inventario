@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Inventory</h1>
+
+    <h2>Add New Material</h2>
+    <form action="/add" method="post">
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="text" name="unit" placeholder="Unit" required>
+        <input type="number" name="unit_price" placeholder="Unit Price" step="0.01" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Current Inventory</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Unit Price</th>
+                <th>Total Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in inventory %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unit }}</td>
+                <td>{{ item.unit_price }}</td>
+                <td>{{ item.quantity * item.unit_price }}</td>
+                <td>
+                    <a href="/edit/{{ item.id }}">Edit</a>
+                    <a href="/delete/{{ item.id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
